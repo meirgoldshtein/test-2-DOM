@@ -174,6 +174,15 @@ addBtn.addEventListener('click', () => {
     const platoon = document.querySelector('#platoon');
     const time = document.querySelector('#time');
     const status = document.querySelector('#status');
+    let correct = true;
+    if(name.value === '' || rank.value === '' || position.value === '' || platoon.value === '' || time.value === '' || status.value === ''){
+        correct = false;
+        alert('Please fill in all the fields');
+    }
+
+    if(!correct){
+        return;
+    }
     const newPerson = {
         name: name.value,
         rank: rank.value,
@@ -224,3 +233,6 @@ document.querySelector('.btnSort').addEventListener('click', (e) => {
     }
 
 })
+
+refreshView();
+// localStorage.clear();
