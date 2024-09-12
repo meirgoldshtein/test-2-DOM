@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        <div class="header">
+            <h1 class="title">BATTALION FORCE MANAGEMENT</h1>
+        </div>
+        <div class="body">
+            <div class="form">
+                <input type="text" placeholder="Full name">
+                <input type="text" placeholder="Rank">
+                <input type="text" placeholder="Position">
+                <input type="text" placeholder="Platoon">
+                <input type="number" min="1" max="20" placeholder="Mission Time (seconds)">
+                <select name="" id="">
+                    <option value="">Active</option>
+                    <option value="">Reserve</option>
+                    <option value="">Retired</option>
+                </select>
+                <p class="btnAdd">Add Personnel</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footerTitle">
+                <h2>FORCES OVERVIEW</h2>
+            </div>
+                <div class="table">
+                    <div class="tableHeaders">
+                        <div class="columnTitle"><p class="sort">Full Name</p></div>
+                        <div class="columnTitle">RANK</div>
+                        <div class="columnTitle">POSITION</div>
+                        <div class="columnTitle">PLATOON</div>
+                        <div class="columnTitle">STATUS</div>
+                        <div class="columnTitle">ACTIONS</div>
+                    </div>
+                    <div class="tableRow">
+                        <div class="rowDiv name"></div>
+                        <div class="rowDiv rank"></div>
+                        <div class="rowDiv position"></div>
+                        <div class="rowDiv platoon"></div>
+                        <div class="rowDiv status"></div>
+                        <div class="rowDiv actions">
+                            <p class="remove">Remove</p>
+                            <p class="mission">Mission</p>
+                            <p class="edit">Edit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
