@@ -55,6 +55,31 @@ const editPerson = (name) => {
 }
 
 
+const countDownMission = (id, btn) => {
+    const arr = loadPersons();
+    const person = arr.find(t => t.name === id);
+    let time = person.time;
+    const interval = setInterval(() => {
+        
+        if (time <= 0) {
+            
+            removePerson(id);
+            
+            btn.innerText = 'Mission Completed';
+            person.time = 0;
+            person.status = 'Retired';
+            localStorage.setItem('personsArr', JSON.stringify(arr));
+            clearInterval(interval);
+            refreshView();
+        }
+        else {
+            time--;
+            btn.innerText = `In Progress:  ${time}` ;
+        }
+        btn.innerText = time;
+    }, 1000)
+}
+
 const addRemoveListener = () => {
     console.log("gg")
     const removeBtns = document.querySelectorAll('.remove');
@@ -73,9 +98,15 @@ const addMissionListener = () => {
     const missionBtns = document.querySelectorAll('.mission');
     console.log(missionBtns)
     missionBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+
             const id = btn.classList[1];
-            startMission(id);
+            if(e.target.innerText === 'Start Mission'){
+                e.target.innerText = 'In Progress';
+                e.target.style.backgroundColor = 'red';
+                countDownMission(id, e.target);
+            }
+            
         })
     })
 }
@@ -97,8 +128,18 @@ const refreshView = () => {
     const table = document.querySelector('.tableBody');
     console.log(table)
     table.innerHTML = '';
+    let missionStatus;
     const arr = loadPersons();
     arr.forEach(person => {
+        if(person.status === 'Active'){
+            missionStatus = 'Mission In Progress';
+        }
+        else if(person.status === 'Reserve'){
+            missionStatus = 'Start Mission';
+        }
+        else if(person.status === 'Retired'){
+            missionStatus = 'Mission Completed';
+        }
         const row = document.createElement('div');
         row.classList.add('tableRow');
         row.innerHTML = `
@@ -109,10 +150,14 @@ const refreshView = () => {
         <div class="rowDiv status">${person.status}</div>
         <div class="rowDiv actions">
             <p class="remove ${person.name}">Remove</p>
-            <p class="mission ${person.name}">Mission</p>
+            <p class="mission ${person.name}">${missionStatus}</p>
             <p class="edit ${person.name}">Edit</p>
         </div>`
         table.appendChild(row);
+        if(person.status === 'Active'){
+            row.querySelector('.mission').style.backgroundColor = 'red';
+            countDownMission(person.name, row.querySelector('.mission'));
+        }
     })
     addRemoveListener();
     addMissionListener();
@@ -138,12 +183,44 @@ addBtn.addEventListener('click', () => {
         status: status.value
     }
     console.log(newPerson);
-    // console.log("dddddddddddddddddddddddd")
-
     addPerson(newPerson);
     refreshView();
     document.querySelectorAll('input').forEach(el => el.value = '');
     document.querySelector('select').value = '';
 })
 
-localStorage.clear();
+let ascend = true;
+document.querySelector('.btnSort').addEventListener('click', (e) => {
+    const arr = loadPersons();
+    if (ascend) {
+        arr.sort((a, b) => {
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (a.name < b.name) {
+                return -1;
+            }
+            return 0;
+        })
+        localStorage.setItem('personsArr', JSON.stringify(arr));
+        refreshView();
+        ascend = false;
+        e.target.innerHTML = 'sort by name - descend';
+    }
+    else {
+        arr.sort((a, b) => {
+            if (a.name > b.name) {
+                return -1;
+            }
+            if (a.name < b.name) {
+                return 1;
+            }
+            return 0;
+        })
+        localStorage.setItem('personsArr', JSON.stringify(arr));
+        refreshView();
+        ascend = true;
+        e.target.innerHTML = 'sort by name - ascend';
+    }
+
+})
