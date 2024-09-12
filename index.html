@@ -8,23 +8,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="container">
+    <section class="editPage">
         <div class="header">
-            <h1 class="title">BATTALION FORCE MANAGEMENT</h1>
+            <h2 class="title">EDIT PERSONNEL</h2>
         </div>
         <div class="body">
             <div class="form">
-                <input type="text" placeholder="Full name">
-                <input type="text" placeholder="Rank">
-                <input type="text" placeholder="Position">
-                <input type="text" placeholder="Platoon">
-                <input type="number" min="1" max="20" placeholder="Mission Time (seconds)">
-                <select name="" id="">
-                    <option value="">Active</option>
-                    <option value="">Reserve</option>
-                    <option value="">Retired</option>
+                <input id="nameE" type="text" required placeholder="Full name">
+                <input id="rankE" type="text" required placeholder="Rank">
+                <input id="positionE" type="text" required placeholder="Position">
+                <input id="platoonE" type="text" required placeholder="Platoon">
+                <input id="timeE" type="number" required min="1" max="20" placeholder="Mission Time (seconds)">
+                <select name="" id="statusE" required>
+                    <option value="Active">Active</option>
+                    <option value="Reserve">Reserve</option>
+                    <option value="Retired">Retired</option>
                 </select>
-                <p class="btnAdd">Add Personnel</p>
+                <p class="formBtn btnSave">Save Changes</p>
+                <p class="formBtn btnCancel">Cancel</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="homePage">
+        <div class="header">
+            <h2 class="title">BATTALION FORCE MANAGEMENT</h2>
+        </div>
+        <div class="body">
+            <div class="form">
+                <input id="name" type="text" placeholder="Full name">
+                <input id="rank" type="text" placeholder="Rank">
+                <input id="position" type="text" placeholder="Position">
+                <input id="platoon" type="text" placeholder="Platoon">
+                <input id="time" type="number" min="1" max="20" placeholder="Mission Time (seconds)">
+                <select id="status" name="" id="">
+                    <option value="Active">Active</option>
+                    <option value="Reserve">Reserve</option>
+                    <option value="Retired">Retired</option>
+                </select>
+                <p class="formBtn btnAdd">Add Personnel</p>
             </div>
         </div>
         <div class="footer">
@@ -40,18 +62,21 @@
                         <div class="columnTitle">STATUS</div>
                         <div class="columnTitle">ACTIONS</div>
                     </div>
-                    <div class="tableRow">
-                        <div class="rowDiv name"></div>
-                        <div class="rowDiv rank"></div>
-                        <div class="rowDiv position"></div>
-                        <div class="rowDiv platoon"></div>
-                        <div class="rowDiv status"></div>
-                        <div class="rowDiv actions">
-                            <p class="remove">Remove</p>
-                            <p class="mission">Mission</p>
-                            <p class="edit">Edit</p>
+                    <div class="tableBody">
+                        <div class="tableRow">
+                            <div class="rowDiv name"></div>
+                            <div class="rowDiv rank"></div>
+                            <div class="rowDiv position"></div>
+                            <div class="rowDiv platoon"></div>
+                            <div class="rowDiv status"></div>
+                            <div class="rowDiv actions">
+                                <p class="remove">Remove</p>
+                                <p class="mission">Mission</p>
+                                <p class="edit">Edit</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
