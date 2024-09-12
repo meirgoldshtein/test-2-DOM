@@ -3,8 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.homePage, .editPage{
+.container{
+    background-color: rgb(44,62,80);
+    height: 100vh;
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    min-width: 100%;
+}
+.homePage{
     
     background-color: rgb(44,62,80);
     height: 100vh;
@@ -15,7 +23,20 @@
     min-width: 100%;
 }
 .editPage{
-    display: none;}
+    
+    background-color: rgb(44,62,80);
+    height: 100vh;
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    min-width: 100%;
+}
+/* .homePage{
+    display: none;} */
+
+/* .editPage{
+    display: none;} */
 
 .header{
     background-color: rgb(44,62,80);
@@ -176,6 +197,8 @@
     flex-direction: column;
     border: 1px solid rgb(141, 145, 142);
     overflow: hidden;
+    color: aliceblue;
+    tab-size: 0.8;
 }
 
 .remove, .mission, .edit{
